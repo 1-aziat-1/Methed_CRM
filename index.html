@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRM</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/main.js"></script>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="cost__wrapper">
+      <p class="cost__text">Итоговая стоимость: <span class="num">$900.00</span></p>
+    </div>
+    <table class="cms">
+      <caption class="cms__title">CRM</caption>
+      <div class="cms__wrapper">
+        <thead class="cms__header">
+          <tr class="cms__header-list header-interface">
+            <th class="header-interface__item header-filter">
+              <button class="header-filter__btn">Фильтр</button>
+            </th>
+            <th class="header-interface__item header-search">
+              <input type="text" class="header-search__input" placeholder="Поиск по наименованию и категории">
+            </th>
+            <th class="header-interface__item header-add">
+              <button class="header-add__btn">Добавить товар</button>
+            </th>
+          </tr>
+          <tr class="cms__header-list header-title">
+            <th class="header-title__item header-id">id</th>
+            <th class="header-title__item header-name">наименование</th>
+            <th class="header-title__item header-category">Категории</th>
+            <th class="header-title__item header-unit">ед/изм</th>
+            <th class="header-title__item header-count">количество</th>
+            <th class="header-title__item header-cost">цена</th>
+            <th class="header-title__item header-result">итог</th>
+            <th class="header-title__item header-icon"></th>
+          </tr>
+        </thead>
+        <tbody class="cms__body">
+          <tr class="cms__body-list">
+            <td class="body-item body-id">246016548</td>
+            <td class="body-item body-name">Навигационная система Soundmax</td>
+            <td class="body-item body-category">Техника для дома</td>
+            <td class="body-item body-unit">шт</td>
+            <td class="body-item body-count">5</td>
+            <td class="body-item body-cost">$100</td>
+            <td class="body-item body-result">$500</td>
+            <td class="body-item body-icon">
+              <button class="body-icon__btn-img no--img"></button>
+              <button class="body-icon__btn-fix"></button>
+              <button class="body-icon__btn-delete"></button>
+            </td>
+          </tr>
+          <tr class="cms__body-list">
+            <td class="body-item body-id">246016548</td>
+            <td class="body-item body-name">Навигационная система Soundmax</td>
+            <td class="body-item body-category">Техника для дома</td>
+            <td class="body-item body-unit">шт</td>
+            <td class="body-item body-count">5</td>
+            <td class="body-item body-cost">$100</td>
+            <td class="body-item body-result">$500</td>
+            <td class="body-item body-icon">
+              <button class="body-icon__btn-img no--img"></button>
+              <button class="body-icon__btn-fix"></button>
+              <button class="body-icon__btn-delete"></button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot class="cms__footer">
+          <tr class="cms__footer-list">
+            <td class="cms__footer-item">
+              <label class="item-page" for="item-page">Показывать на странице:
+                <select id="item-page" name="page">
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                </select>
+              </label>
+            </td>
+            <td class="cms__footer-item item-count">
+              <label class="item-count">
+                <span class="item-count__now">1-10 </span>
+                of
+                <span class="item-count__max">276</span>
+              </label>
+            </td>
+            <td class="cms__footer-item item-btn"></td>
+            <td class="cms__footer-item item-btn"></td>
+          </tr>
+        </tfoot>
+      </div>
+    </table>
+  </div>
+
+  <div class="modal">
+    <div class="modal__container">
+      <div class="modal__wrapper-title">
+        <div class="modal__title">Добавить товар</div>
+        <div class="modal__id">id: 201910241</div>
+        <div class="modal__btn-close">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 2L22 22" stroke="#6E6893" stroke-width="3" stroke-linecap="round"/>
+            <path d="M2 22L22 2" stroke="#6E6893" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+      <form class="modal__form form" id="form" action="#" method="POST">
+        <div class="form__container">
+          <fieldset class="form__item name">
+            <label for="name" class="form__item-title">Наименование </label>
+            <input class="form__item-input form__item-input-name" id="name" name="name" type="text">
+          </fieldset>
+      
+          <fieldset class="form__item category">
+            <label for="category" class="form__item-title">Категория</label>
+            <input class="form__item-input form__item-input-category" id="category" name="category" type="text">
+          </fieldset>
+  
+          <fieldset class="form__item units">
+            <label for="units" class="form__item-title">Единицы измерения</label>
+            <input class="form__item-input form__item-input-units" id="units" name="units" type="text">
+          </fieldset>
+
+          <fieldset class="form__item discount">
+            <label for="checkbox" class="form__item-title">Дисконт </label>
+            <fieldset class="form__item-wrapper">
+              <input class="form__item-checkbox" id="checkbox" name="checkbox" type="checkbox">
+              <input class="form__item-input form__item-input-discount" name="discount" type="text" disabled>
+            </fieldset>
+          </fieldset>
+
+          <fieldset class="form__item area">
+            <label for="description" class="form__item-title">Описание </label>
+            <textarea class="form__item-area" id="description" name="description"></textarea>
+          </fieldset>
+  
+          <fieldset class="form__item amount">
+            <label for="amount" class="form__item-title">Количество</label>
+            <input class="form__item-input form__item-input-amount" id="amount" name="amount" type="number">
+          </fieldset>
+  
+          <fieldset class="form__item price">
+            <label for="price" class="form__item-title">Цена </label>
+            <input class="form__item-input form__item-input-price" id="price" name="price" type="number">
+          </fieldset>
+          <div class="form__text-wrapper">
+            <p class="form__text-error">Изображение не должно</p>
+            <p class="form__text-error">превышать размер 1 Мб</p>
+          </div>
+          <button class="form__button image" form="form" type="submit">Добавить изображение</button>
+        </div>
+        <div class="form__wrapper-img form-picture">
+          <img class="form-picture__img" src="img/img/cofe.jpg" alt="кофе машина" >
+          <button class="form-picture__delete">
+            <svg width="24" height="30" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15.5334 12.45L12 15.9833L8.45004 12.45L6.10004 14.8L9.65004 18.3333L6.11671 21.8667L8.46671 24.2167L12 20.6833L15.5334 24.2167L17.8834 21.8667L14.35 18.3333L17.8834 14.8L15.5334 12.45ZM17.8334 1.66667L16.1667 0H7.83337L6.16671 1.66667H0.333374V5H23.6667V1.66667H17.8334ZM2.00004 26.6667C2.00004 28.5 3.50004 30 5.33337 30H18.6667C20.5 30 22 28.5 22 26.6667V6.66667H2.00004V26.6667ZM5.33337 10H18.6667V26.6667H5.33337V10Z" fill="white"/>
+              </svg>              
+          </button>
+        </div>
+      </form>
+      <div class="modal__footer-wrapper">
+        <p class="modal__footer-costs">Итоговая стоимость: <span>$ 900.00</span></p>
+        <button class="modal__footer-btn">Добавить товар</button>
+      </div>
+    </div>
+    <div class="modal__error-wrapper">
+      <div class="modal__btn-close">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 2L22 22" stroke="#6E6893" stroke-width="3" stroke-linecap="round"/>
+          <path d="M2 22L22 2" stroke="#6E6893" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="modal__error-img"></div>
+      <p class="modal__error-text">Что-то пошло не так</p>
+    </div>
+  </div>
+</body>
+
+</html>
