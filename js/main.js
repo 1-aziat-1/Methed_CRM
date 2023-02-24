@@ -71,13 +71,13 @@ const modalId = modal.querySelector('.modal__id');
 const tbody = document.querySelector('.cms__body');
 
 const createRow = (obj) => {
-  const td = document.createElement('td');
+  const tr = document.createElement('tr');
   for (let i in obj) {
-    const tr = document.createElement('tr');
-    tr.textContent = obj[i];
-    td.append(tr);
+    const td = document.createElement('td');
+    td.textContent = obj[i];
+    tr.append(td);
   }
-  return td;
+  return tr;
 };
 
 const renderGoods = (arrObj) => {
