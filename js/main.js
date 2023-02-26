@@ -1,6 +1,6 @@
 'use strict';
 
-const arr = [
+let arr = [
   {
     "id": 253842678,
     "title": "Смартфон Xiaomi 11T 8/128GB",
@@ -58,7 +58,7 @@ const arr = [
     }
   }
 ];
-
+console.log(arr);
 const modal = document.querySelector('.modal');
 const modalTitle = modal.querySelector('.modal__title');
 const modalCloseBtn = modal.querySelector('.modal__btn-close');
@@ -70,6 +70,7 @@ const modalId = modal.querySelector('.modal__id');
 
 const tbody = document.querySelector('.cms__body');
 const btnItemAdd = document.querySelector('.header-add__btn');
+const btnItemDelete = document.querySelector('.body-icon__btn-delete');
 
 const createBtn = () => {
   const tdButton = document.createElement('td');
@@ -150,6 +151,18 @@ modal.addEventListener('click', event => {
     modal.classList.remove('is-visible');
   }
 });
+
+tbody.addEventListener('click', e => {
+  const target = e.target;
+  if (target.closest('.body-icon__btn-delete')) {
+    const item = target.closest('.cms__body-list');
+    item.remove();
+    const idItem = +item.querySelector('.body-id').textContent;
+    arr = arr.filter(item => item.id !== idItem);
+    console.log(arr);
+  }
+});
+
 
 
 console.log('renderGoods(arr);: ', renderGoods(arr));
