@@ -69,6 +69,7 @@ const modalResultCosts = modal.querySelector('.modal__footer-costs>span');
 const modalId = modal.querySelector('.modal__id');
 
 const tbody = document.querySelector('.cms__body');
+const btnItemAdd = document.querySelector('.header-add__btn');
 
 const createBtn = () => {
   const tdButton = document.createElement('td');
@@ -138,6 +139,17 @@ const renderGoods = (arrObj) => {
   const massiv = arrObj.map(item => createRow(item));
   tbody.append(...massiv);
 };
+
+btnItemAdd.addEventListener('click', () => {
+  modal.classList.add('is-visible');
+});
+
+modal.addEventListener('click', event => {
+  const target = event.target;
+  if ((target.closest('.modal__container') === null) || (target.closest('.modal__btn-close'))) {
+    modal.classList.remove('is-visible');
+  }
+});
 
 
 console.log('renderGoods(arr);: ', renderGoods(arr));
