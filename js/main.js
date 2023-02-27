@@ -58,7 +58,7 @@ let arr = [
     }
   }
 ];
-console.log(arr);
+
 const modal = document.querySelector('.modal');
 const modalTitle = modal.querySelector('.modal__title');
 const modalCloseBtn = modal.querySelector('.modal__btn-close');
@@ -94,6 +94,8 @@ const createBtn = () => {
     btnDelete,
   };
 };
+
+
 
 const createRow = ({id, title, category, units, count, price}) => {
   const tr = document.createElement('tr');
