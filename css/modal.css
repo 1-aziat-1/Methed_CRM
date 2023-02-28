@@ -171,8 +171,13 @@
   grid-column: 2 / 3;
 }
 
-.form__button {
+.from__btn-wrapper {
+}
+
+.form__btn-label {
+  display: block;
   grid-gap: 32px;
+  position: relative;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
@@ -182,6 +187,10 @@
   border-radius: 6px;
   width: 250px;
   padding: 11px 28px;
+}
+
+.form__btn {
+  display: none;
 }
 
 .modal__footer-wrapper {

@@ -62,15 +62,23 @@ let arr = [
 const modal = document.querySelector('.modal');
 const modalTitle = modal.querySelector('.modal__title');
 const modalCloseBtn = modal.querySelector('.modal__btn-close');
+const modalAddBtn = modal.querySelector('.modal__footer-btn');
+
 const modalForm = modal.querySelector('.modal__form');
-const modalCheckbox = modal.querySelector('.form__item-checkbox');
-const modalInputCheckbox = modal.querySelector('.form__item-input-discount');
+const modalCheckbox = modalForm.checkbox;
+const inputDiscount = modalForm.discount;
+
+const modalCount  = modalForm.count;
+const modalPrice = modalForm.price;
+
 const modalResultCosts = modal.querySelector('.modal__footer-costs>span');
-const modalId = modal.querySelector('.modal__id');
+
+const modalId = modal.querySelector('.modal__id>span');
 
 const tbody = document.querySelector('.cms__body');
 const btnItemAdd = document.querySelector('.header-add__btn');
 const btnItemDelete = document.querySelector('.body-icon__btn-delete');
+const btnResultTable = document.querySelector('.cost__text>span');
 
 const createBtn = () => {
   const tdButton = document.createElement('td');
@@ -95,7 +103,12 @@ const createBtn = () => {
   };
 };
 
-
+const resultCost = () => {
+  const arrItemResults = document.querySelectorAll('.body-result');
+  let result = 0;
+  arrItemResults.forEach((item) => result += +item.textContent);
+  btnResultTable.textContent = `$ ${result}`;
+};
 
 const createRow = ({id, title, category, units, count, price}) => {
   const tr = document.createElement('tr');
@@ -139,18 +152,71 @@ const createRow = ({id, title, category, units, count, price}) => {
 };
 
 const renderGoods = (arrObj) => {
-  const massiv = arrObj.map(item => createRow(item));
-  tbody.append(...massiv);
+  if (Array.isArray(arrObj)) {
+    const massiv = arrObj.map(item => createRow(item));
+    tbody.append(...massiv);
+    resultCost();
+  } else {
+    arr.push(arrObj);
+    tbody.append(createRow(arrObj));
+    resultCost();
+  }
+};
+
+const createId = (arr) => {
+  const randomId = Math.floor(Math.random() * 1000000000);
+  arr.forEach(item => {
+    if (item.id === randomId) {
+      createId(arr);
+    }
+  })
+  return randomId;
 };
 
 btnItemAdd.addEventListener('click', () => {
   modal.classList.add('is-visible');
+  modalId.textContent = createId(arr);
 });
 
 modal.addEventListener('click', event => {
   const target = event.target;
   if ((target.closest('.modal__container') === null) || (target.closest('.modal__btn-close'))) {
     modal.classList.remove('is-visible');
+  }
+});
+
+modalForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const newItem = Object.fromEntries(formData);
+  newItem['id'] = +modalId.textContent;
+  renderGoods(newItem);
+  console.log(newItem);
+  modalForm.reset();
+  modal.classList.remove('is-visible');
+  modalResultCosts.textContent = '$ 000.00';
+});
+
+modalCount.addEventListener('blur', () => {
+  if (modalCount.value !== '' && modalPrice.value !== '') {
+    modalResultCosts.textContent = `$ ${+modalCount.value * +modalPrice.value }`;
+  }
+});
+
+modalPrice.addEventListener('blur', () => {
+  if (modalCount.value !== '' && modalPrice.value !== '') {
+    modalResultCosts.textContent = `$ ${+modalCount.value * +modalPrice.value }`;
+  }
+});
+
+
+
+modalCheckbox.addEventListener('change', () => {
+  if (inputDiscount.disabled) {
+    inputDiscount.disabled = false;
+  } else {
+    inputDiscount.value = '';
+    inputDiscount.disabled = true;
   }
 });
 
@@ -161,7 +227,7 @@ tbody.addEventListener('click', e => {
     item.remove();
     const idItem = +item.querySelector('.body-id').textContent;
     arr = arr.filter(item => item.id !== idItem);
-    console.log(arr);
+    resultCost();
   }
 });
 
