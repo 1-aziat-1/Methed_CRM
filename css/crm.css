@@ -220,7 +220,7 @@
   background-image: url('../img/svg/icon_delete.svg');
 }
 
-.no--img {
+.body-icon__btn-noImg {
   background-image: url('../img/svg/no--icon_img.svg');
 }
 

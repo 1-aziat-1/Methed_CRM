@@ -3,8 +3,12 @@ export const createBtn = (url) => {
   tdButton.classList.add('body-item', 'body-icon');
 
   const btnImg = document.createElement('button');
-  btnImg.classList.add('body-icon__btn-img');
-  btnImg.dataset.pic = url;
+  if (url) {
+    btnImg.classList.add('body-icon__btn-img');
+    btnImg.dataset.pic = url;
+  } else {
+    btnImg.classList.add('body-icon__btn-noImg');
+  }
 
   const btnFix = document.createElement('button');
   btnFix.classList.add('body-icon__btn-fix');
@@ -22,7 +26,7 @@ export const createBtn = (url) => {
   };
 };
 
-export const createRow = ({id, title, category, units, count, price, url = 'img/img/cofe.jpg'}) => {
+export const createRow = ({id, title, category, units, count, price, url}) => {
   const tr = document.createElement('tr');
   tr.classList.add('cms__body-list');
 
