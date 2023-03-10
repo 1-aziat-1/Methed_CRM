@@ -1,4 +1,4 @@
-import {createId} from './createElements.js';
+import {createId, createWinImg} from './createElements.js';
 import resultCost from './option.js';
 import renderGoods from './renders.js';
 import {removeStorage} from './serviceStorage.js';
@@ -58,6 +58,10 @@ export const listener = (data) => {
       const idItem = +item.querySelector('.body-id').textContent;
       removeStorage(idItem);
       resultCost();
+    }
+    if (target.closest('.body-icon__btn-img')) {
+      const dataUrl = target.dataset.pic;
+      createWinImg(dataUrl);
     }
   });
 };

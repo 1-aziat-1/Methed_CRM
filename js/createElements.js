@@ -1,9 +1,10 @@
-export const createBtn = () => {
+export const createBtn = (url) => {
   const tdButton = document.createElement('td');
   tdButton.classList.add('body-item', 'body-icon');
 
   const btnImg = document.createElement('button');
   btnImg.classList.add('body-icon__btn-img');
+  btnImg.dataset.pic = url;
 
   const btnFix = document.createElement('button');
   btnFix.classList.add('body-icon__btn-fix');
@@ -21,7 +22,7 @@ export const createBtn = () => {
   };
 };
 
-export const createRow = ({id, title, category, units, count, price}) => {
+export const createRow = ({id, title, category, units, count, price, url = 'img/img/cofe.jpg'}) => {
   const tr = document.createElement('tr');
   tr.classList.add('cms__body-list');
 
@@ -51,9 +52,9 @@ export const createRow = ({id, title, category, units, count, price}) => {
 
   const tdResult = document.createElement('td');
   tdResult.classList.add('body-item', 'body-result');
-  tdResult.textContent = price*count;
+  tdResult.textContent = +price * +count;
 
-  const btn = createBtn();
+  const btn = createBtn(url);
   const {tdButton} = btn;
 
 
@@ -71,3 +72,12 @@ export const createId = (arr) => {
   });
   return randomId;
 };
+
+export const createWinImg = (url) => {
+  const leftWin = (screen.width - 600) / 2;
+  const topWin = (screen.height - 600) / 2;
+
+  const win = open(`${url}`, '', `width=600,height=600,top=${topWin},left=${leftWin}`);
+  return win;
+};
+
