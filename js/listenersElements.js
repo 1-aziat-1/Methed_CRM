@@ -1,14 +1,14 @@
 import {createId, createWinImg} from './createElements.js';
+import {fetchRequest} from './dataLoad.js';
 import resultCost from './option.js';
 import renderGoods from './renders.js';
 import {removeStorage} from './serviceStorage.js';
 import * as variables from './variables.js';
 
 
-export const listener = (data) => {
+export const listener = () => {
   variables.btnItemAdd.addEventListener('click', () => {
     variables.modal.classList.add('is-visible');
-    variables.modalId.textContent = createId(data);
   });
 
   variables.modal.addEventListener('click', event => {
@@ -20,13 +20,29 @@ export const listener = (data) => {
 
   variables.modalForm.addEventListener('submit', e => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const newItem = Object.fromEntries(formData);
-    newItem['id'] = +variables.modalId.textContent;
-    renderGoods(newItem);
-    variables.modalForm.reset();
-    variables.modal.classList.remove('is-visible');
-    variables.modalResultCosts.textContent = '$ 000.00';
+    fetchRequest('https://peaceful-holly-muskox.glitch.me/api/goods', {
+      method: 'POST',
+      body: {
+        title: variables.modalForm.title.value,
+        category: variables.modalForm.category.value,
+        description: variables.modalForm.description.value,
+        price: +variables.modalForm.price.value,
+        count: +variables.modalForm.count.value,
+        units: variables.modalForm.units.value,
+      },
+      callback(err, data) {
+        if (err) {
+          console.warn(err, data);
+        }
+        renderGoods(null, data);
+        variables.modalForm.reset();
+        variables.modal.classList.remove('is-visible');
+        variables.modalResultCosts.textContent = '$ 000.00';
+      },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   });
 
   variables.modalCount.addEventListener('blur', () => {
