@@ -1,4 +1,4 @@
-import {createId, createWinImg} from './createElements.js';
+import {createWinImg} from './createElements.js';
 import {fetchRequest} from './dataLoad.js';
 import resultCost from './option.js';
 import renderGoods from './renders.js';
@@ -13,8 +13,18 @@ export const listener = () => {
 
   variables.modal.addEventListener('click', event => {
     const target = event.target;
-    if ((target.closest('.modal__container') === null) || (target.closest('.modal__btn-close'))) {
+    if ((target.closest('.modal__container') === null) || (target.closest('.modal__wrapper-title>.modal__btn-close'))) {
       variables.modal.classList.remove('is-visible');
+      variables.modalForm.reset();
+      variables.modalError.classList.remove('is-visible');
+    }
+  });
+
+  variables.modalError.addEventListener('click', event => {
+    const target = event.target;
+    if ((target.closest('.modal__error-wrapper') === null) || (target.closest('.modal__error-wrapper>.modal__btn-close'))) {
+      variables.modalForm.reset();
+      variables.modalError.classList.remove('is-visible');
     }
   });
 
@@ -32,7 +42,12 @@ export const listener = () => {
       },
       callback(err, data) {
         if (err) {
-          console.warn(err, data);
+          variables.modalError.classList.add('is-visible');
+          if (data?.errors) {
+            variables.modalErrorText.textContent = `${data.errors[0].field} - ${data.errors[0].message}`;
+          }
+          console.warn(err);
+          return;
         }
         renderGoods(null, data);
         variables.modalForm.reset();

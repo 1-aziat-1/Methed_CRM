@@ -59,7 +59,12 @@ export const fetchRequest = async (url, {
       return;
     }
 
-    throw new Error(response.statusText);
+    if (response.status < 200 || response.status >= 300) {
+      callback(new Error(response.status), await response.json());
+      return;
+    }
+
+    throw new Error(response.status);
   } catch (err) {
     callback(err);
   }

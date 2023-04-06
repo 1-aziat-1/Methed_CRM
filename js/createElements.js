@@ -84,4 +84,3 @@ export const createWinImg = (url) => {
   const win = open(`${url}`, '', `width=600,height=600,top=${topWin},left=${leftWin}`);
   return win;
 };
-
