@@ -7,5 +7,4 @@ const resultCost = () => {
   btnResultTable.textContent = `$ ${result}`;
 };
 
-
 export default resultCost;

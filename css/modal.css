@@ -1,4 +1,4 @@
-.modal {
+.overlay {
   position: fixed; 
   width: 100%; 
   height: 100%; 
@@ -8,12 +8,10 @@
   bottom: 0;
   background-color: rgba(0,0,0,0.5);
   cursor: pointer; 
-  opacity: 0;
-  visibility: hidden;
   z-index: 1;
 }
 
-.modal.is-visible {
+.overlay.is-visible {
   opacity: 1;
   visibility: visible;
 }
@@ -35,9 +33,9 @@
 }
 
 
-.modal__container {
+.modal {
   position: relative;
-  top: 30px;
+  top: 10px;
   padding: 32px 106px;
   margin: 0 auto;
   max-width: 792px;
@@ -59,8 +57,38 @@
   position: absolute;
   right: 30px;
   top: 20px;
+  width: 24px;
+  height: 24px;
   border: none;
   background-position: 150px 200px;
+}
+
+.modal__btn-close span {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.modal__btn-close span:before,
+.modal__btn-close span:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 24px;
+  height: 4px;
+  background-color: #6E6893;
+  border-radius: 20px;
+}
+
+.modal__btn-close span:before{
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.modal__btn-close span:after{
+  transform: translateX(-50%) rotate(-45deg);
 }
 
 .modal__form {
@@ -171,7 +199,7 @@
   grid-column: 2 / 3;
 }
 
-.from__btn-wrapper {
+.form__btn-wrapper {
 }
 
 .form__btn-label {

@@ -1,41 +1,3 @@
-
-// export const httpRequest = (url, {
-//   method = 'GET',
-//   callback,
-//   body = {},
-//   headers,
-// }) => {
-//   try {
-//     const xhr = new XMLHttpRequest();
-//     xhr.open(method, url);
-
-//     if (headers) {
-//       for (const [key, value] of Object.entries(headers)) {
-//         xhr.setRequestHeader(key, value);
-//       }
-//     }
-
-//     xhr.addEventListener('load', () => {
-//       if (xhr.status < 200 || xhr.status >= 300) {
-//         callback(new Error(xhr.status), xhr.response);
-//         return;
-//       }
-
-//       const data = JSON.parse(xhr.response);
-//       console.log(callback);
-//       if (callback) callback(null, data);
-//     });
-
-//     xhr.addEventListener('error', () => {
-//       callback(new Error(xhr.status), xhr.response);
-//     });
-
-//     xhr.send(JSON.stringify(body));
-//   } catch (err) {
-//     callback(new Error(err));
-//   }
-// };
-
 export const fetchRequest = async (url, {
   method = 'GET',
   callback,
@@ -55,7 +17,7 @@ export const fetchRequest = async (url, {
 
     if (response.ok) {
       const data = await response.json();
-      if (callback) callback(null, data);
+      if (callback) return callback(null, data);
       return;
     }
 

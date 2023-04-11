@@ -1,7 +1,8 @@
 import {createRow} from './createElements.js';
+import { fetchRequest } from './dataLoad.js';
+import showModal from './modal.js';
 import resultCost from './option.js';
-import {getStorage, setStorage} from './serviceStorage.js';
-import {modalError, modalErrorText, tbody} from './variables.js';
+import {tbody} from './variables.js';
 
 
 const renderGoods = (err, arrObj) => {
