@@ -6,7 +6,7 @@ import {fetchRequest} from './dataLoad.js';
 
 const init = () => {
   listener();
-  fetchRequest('https://peaceful-holly-muskox.glitch.me/api/goods', {
+  fetchRequest('https://freckle-lively-worm.glitch.me/api/goods', {
     method: 'GET',
     callback: renderGoods,
   });

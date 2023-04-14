@@ -1,7 +1,6 @@
 import {createWinImg} from './createElements.js';
 import {fetchRequest} from './dataLoad.js';
 import showModal from './modal.js';
-import resultCost from './option.js';
 import renderGoods from './renders.js';
 import {removeStorage} from './serviceStorage.js';
 import * as variables from './variables.js';
@@ -13,9 +12,10 @@ export const listener = () => {
   });
 
   variables.tbody.addEventListener('click', async ({target}) => {
-    const id = +target.closest('tr').children[0].textContent;
+    const id = target.closest('tr').children[0].textContent;
+    console.log(id);
     if (target.matches('.body-icon__btn-fix')) {
-      await fetchRequest(`https://peaceful-holly-muskox.glitch.me/api/goods/${id}`, {
+      await fetchRequest(`https://freckle-lively-worm.glitch.me/api/goods/${id}`, {
         method: 'GET',
         callback: showModal,
       });
@@ -92,20 +92,20 @@ export const listener = () => {
   //   }
   // });
 
-  variables.tbody.addEventListener('click', e => {
-    const target = e.target;
-    if (target.closest('.body-icon__btn-delete')) {
-      const item = target.closest('.cms__body-list');
-      item.remove();
-      const idItem = +item.querySelector('.body-id').textContent;
-      removeStorage(idItem);
-      resultCost();
-    }
-    if (target.closest('.body-icon__btn-img')) {
-      const dataUrl = target.dataset.pic;
-      createWinImg(dataUrl);
-    }
-  });
+  // variables.tbody.addEventListener('click', e => {
+  //   const target = e.target;
+  //   if (target.closest('.body-icon__btn-delete')) {
+  //     const item = target.closest('.cms__body-list');
+  //     item.remove();
+  //     const idItem = +item.querySelector('.body-id').textContent;
+  //     removeStorage(idItem);
+  //     resultCost();
+  //   }
+  //   if (target.closest('.body-icon__btn-img')) {
+  //     const dataUrl = target.dataset.pic;
+  //     createWinImg(dataUrl);
+  //   }
+  // });
 };
 
 export default listener;
